@@ -1,0 +1,14 @@
+universe = vanilla
+executable = /home/anarya.ray/.conda/envs/bilby_mdc/bin/python3.10
+arguments = /home/anarya.ray/gppop-prod/MDC_from_scratch/run_pe_normal_chieff_only.py $(macroj)
+getenv = True
+accounting_group = ligo.dev.o4.cbc.pe.bilby
+request_memory = 10000
+request_disk= 1048576
+notification = never
+should_transfer_files=YES
+request_cpus =2
+log = logs7/$(cluster)-$(process)-PT.log
+error = logs7/$(cluster)-$(process)-PT.err
+output = logs7/$(cluster)-$(process)-PT.out
+queue macroj from bbh_pop4b_O3_zeronoise_274_chi1chi2right.txt
