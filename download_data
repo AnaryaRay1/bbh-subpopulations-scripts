@@ -1,0 +1,25 @@
+#!/bin/bash
+
+zenodo_get -d 10.5281/zenodo.12746314 -w files_tmp
+grep .tar.gz files_tmp > files
+rm files_tmp
+
+if test -d $1; then
+    echo ""
+else
+    mkdir -p $1
+fi
+
+cat files | while read f; do
+    filename=$1/`echo $f | sed -e 's:.*/::g'`
+    if [[ -f "$filename" ]]; then
+        echo "$filename exists. Skipping..."
+    else
+        echo "Downloading $f"
+        curl --url $f --output $filename done
+        tar -xvzf $filename -C $1/
+    fi
+done
+
+rm files
+rm md5sums.txt

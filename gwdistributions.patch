@@ -1,0 +1,108 @@
+diff --git a/gwdistributions/distributions/spin/effective.py b/gwdistributions/distributions/spin/effective.py
+index 7adc112..372d6b2 100644
+--- a/gwdistributions/distributions/spin/effective.py
++++ b/gwdistributions/distributions/spin/effective.py
+@@ -65,6 +65,103 @@ where
+ 
+ #-------------------------------------------------
+ 
++class AlignedUniformMagnitudeChiEffGivenAsymmetricMassRatio(ChiEffGivenAsymmetricMassRatioDistribution):
++    """\
++The induced distribution of chi_eff when the (6D) spin components are aligned with magnitudes distributed uniformly \
++power-laws in magnitudes. This is additionally conditioned on the asymmetric mass ratio. See
++    https://dcc.ligo.org/LIGO-P2100112
++for full derivations and more details.
++    """
++
++    _normalized = True
++    _params = ('max_spin_magnitude',)
++
++    def _init_values(self, max_spin_magnitude=+1.0):
++        self._values = [max_spin_magnitude]
++
++    def _domain(self, q):
++        return {'chi_eff': (-1.0, +1.0)}
++
++    def _rvs(self, q, size=1):
++        return self._static_rvs(*self.params, q, size=size)
++    
++    @staticmethod
++    def _static_rvs(max_mag, q, size=1):
++
++        # draw samples from iid spin distributions
++        spin1z = Uniform._static_rvs(-max_mag, max_mag, size=size)
++        spin2z = Uniform._static_rvs(-max_mag, max_mag, size=size)
++
++        # now compute chi_eff
++        return PolarSpins2Chi._chi_eff(1.0, spin1z, q, spin2z)
++
++    @staticmethod
++    def _logprob(chi_eff, q, max_spin_mag):
++        return be.where( # based on Eq 7 of https://dcc.ligo.org/LIGO-P2100112
++                   chi_eff <= -max_spin_mag,
++                   -be.infty,
++                   be.where(
++                       chi_eff < -(1-q)/(1+q),
++                       AlignedUniformMagnitudeChiEffGivenAsymmetricMassRatio._A8(chi_eff,q,max_spin_mag),
++                       be.where(
++                           chi_eff < (1-q)/(1+q),
++                           AlignedUniformMagnitudeChiEffGivenAsymmetricMassRatio._A9(chi_eff,q,max_spin_mag),
++                           be.where(
++                               chi_eff < max_spin_mag,
++                               AlignedUniformMagnitudeChiEffGivenAsymmetricMassRatio._A6(chi_eff,q,max_spin_mag),
++                               -be.infty,
++                            ),
++                       ),
++                   ),
++               )              
++    
++    @staticmethod
++    def _A6(chi, q, amax):
++        """Eq. A6 from https://dcc.ligo.org/LIGO-P2100112
++        """
++        return be.log(amax-chi)+2*be.log(1+q)-be.log(4*q*amax**2)
++    
++    @staticmethod
++    def _A8(chi, q, amax):
++        """Eq. A8 from https://dcc.ligo.org/LIGO-P2100112
++        """
++        return be.log(amax+chi)+2*be.log(1+q)-be.log(4*q*amax**2)
++
++    @staticmethod
++    def _A9(chi, q, amax):
++        """Eq. A9 from https://dcc.ligo.org/LIGO-P2100112
++        """
++        return be.log(1+q)-be.log(2*amax)
++    
++class AlignedUniformMagnitudeChiEffGivenComponentMass(ChiEffGivenComponentMassDistribution):
++    """\
++The induced distribution of chi_eff when the (6D) spin components are isotropically distributed following \
++power-laws in magnitudes. This is additionally conditioned on the (source-frame) component masses, and delegates \
++to IsotropicUniformMagnitudeChiEffGivenAsymmetricMassRatio. See 
++    https://dcc.ligo.org/LIGO-P2100112
++for full derivations and more details.
++    """
++    _normalized = AlignedUniformMagnitudeChiEffGivenAsymmetricMassRatio._normalized
++    _params = ('max_spin_magnitude',)
++
++    def _init_values(self, max_spin_magnitude=+1.0):
++        self._values = [max_spin_magnitude]
++
++    def _domain(self, mass1_source, mass2_source):
++        return AlignedUniformMagnitudeChiEffGivenAsymmetricMassRatio._domain(self, mass2_source/mass1_source)
++
++    def _rvs(self, mass1_source, mass2_source, size=1):
++        q = mass2_source / mass1_source
++        return AlignedUniformMagnitudeChiEffGivenAsymmetricMassRatio._static_rvs(*self.params, q, size=size)
++
++    @staticmethod
++    def _logprob(chi_eff, mass1_source, mass2_source, max_spin_mag):
++        q = mass2_source / mass1_source
++        return AlignedUniformMagnitudeChiEffGivenAsymmetricMassRatio._logprob(chi_eff, q, max_spin_mag)
++
++    
++#-------------------------------------------------
++
+ class IsotropicUniformMagnitudeChiEffGivenAsymmetricMassRatio(ChiEffGivenAsymmetricMassRatioDistribution):
+     """\
+ The induced distribution of chi_eff when the (6D) spin components are iid isotropically following \
