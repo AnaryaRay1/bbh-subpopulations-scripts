@@ -1,0 +1,28 @@
+#h5 file containing injected events for VT estimation
+injection_file: /home/anarya.ray/gppop-mdc/3d-clean/o1+o2+o3_bbhpop_real+semianalytic-LIGO-T2100377-v2.hdf5
+
+#keys to load from the injection file
+injection_keys:  
+    mass1_source: injections/mass1_source
+    mass2_source: injections/mass2_source
+    redshift: injections/redshift
+    spin1x: injections/spin1x
+    spin1y: injections/spin1y
+    spin1z: injections/spin1z
+    spin2x: injections/spin2x
+    spin2y: injections/spin2y
+    spin2z: injections/spin2z
+    sampling_pdf: injections/sampling_pdf
+    mixture_weight: injections/mixture_weight
+    gstlal_ifar: injections/ifar_gstlal
+    pycbc_hyper_ifar: injections/ifar_pycbc_hyperbank
+    pycbc_ifar: injections/ifar_pycbc_bbh
+    cwb_ifar: injections/ifar_cwb
+    mbta_ifar: injections/ifar_mbta
+
+
+#threshold to use for calling an injection detectable
+threshold: [1.0, 1.0, 1.0]
+
+#quantities to threshold on
+threshold_keys: ['gstlal_ifar','pycbc_hyper_ifar','pycbc_ifar']

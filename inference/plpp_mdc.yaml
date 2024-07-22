@@ -1,0 +1,112 @@
+mbins: [5.0,6.5,7.5,12.5,15.,17.5,30,40,50,60]
+
+#redshift bin edges
+zbins: [0.01, 0.1,  0.25, 0.5,  0.75, 1.,   1.25, 1.5 ]
+
+#name of analysis meta-file to create
+meta_file: 'plpp_mdc_uncorr_69.h5'
+
+#Number of PE samples per event
+nsamples: 2373
+
+#h5 file containing injected events for VT estimation
+injection_file: /home/anarya.ray/gppop-mdc/3d-clean/o1+o2+o3_bbhpop_real+semianalytic-LIGO-T2100377-v2.hdf5
+
+#keys to load from the injection file
+injection_keys:  
+    mass1_source: injections/mass1_source
+    mass2_source: injections/mass2_source
+    redshift: injections/redshift
+    spin1x: injections/spin1x
+    spin1y: injections/spin1y
+    spin1z: injections/spin1z
+    spin2x: injections/spin2x
+    spin2y: injections/spin2y
+    spin2z: injections/spin2z
+    sampling_pdf: injections/sampling_pdf
+    mixture_weight: injections/mixture_weight
+    optimal_snr_net: injections/optimal_snr_net
+
+
+#threshold to use for calling an injection detectable
+threshold: 9.0
+
+#quantities to threshold on
+threshold_keys: optimal_snr_net
+pe_summary_event_dict:
+   S24010: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_9_result.json']
+   S24011: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_6_result.json']
+   S24012: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_53_result.json']
+   S24013: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_31_result.json']
+   S24014: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_21_result.json']
+   S24015: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_43_result.json']
+   S24016: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_63_result.json']
+   S24017: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_11_result.json']
+   S24018: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_23_result.json']
+   S24019: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_41_result.json']
+   S240110: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_4_result.json']
+   S240111: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_51_result.json']
+   S240112: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_33_result.json']
+   S240113: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_13_result.json']
+   S240114: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_61_result.json']
+   S240115: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_68_result.json']
+   S240116: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_67_result.json']
+   S240117: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_15_result.json']
+   S240118: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_58_result.json']
+   S240119: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_57_result.json']
+   S240120: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_2_result.json']
+   S240121: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_35_result.json']
+   S240122: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_25_result.json']
+   S240123: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_47_result.json']
+   S240124: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_48_result.json']
+   S240125: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_17_result.json']
+   S240126: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_18_result.json']
+   S240127: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_65_result.json']
+   S240128: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_27_result.json']
+   S240129: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_28_result.json']
+   S240130: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_45_result.json']
+   S240131: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_55_result.json']
+   S240132: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_0_result.json']
+   S240133: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_38_result.json']
+   S240134: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_37_result.json']
+   S240135: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_49_result.json']
+   S240136: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_46_result.json']
+   S240137: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_24_result.json']
+   S240138: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_34_result.json']
+   S240139: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_56_result.json']
+   S240140: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_59_result.json']
+   S240141: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_3_result.json']
+   S240142: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_14_result.json']
+   S240143: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_66_result.json']
+   S240144: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_36_result.json']
+   S240145: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_39_result.json']
+   S240146: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_54_result.json']
+   S240147: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_1_result.json']
+   S240148: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_44_result.json']
+   S240149: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_29_result.json']
+   S240150: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_26_result.json']
+   S240151: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_64_result.json']
+   S240152: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_19_result.json']
+   S240153: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_16_result.json']
+   S240154: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_10_result.json']
+   S240155: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_62_result.json']
+   S240156: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_42_result.json']
+   S240157: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_20_result.json']
+   S240158: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_30_result.json']
+   S240159: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_7_result.json']
+   S240160: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_8_result.json']
+   S240161: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_52_result.json']
+   S240162: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_60_result.json']
+   S240163: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_12_result.json']
+   S240164: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_32_result.json']
+   S240165: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_5_result.json']
+   S240166: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_50_result.json']
+   S240167: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_40_result.json']
+   S240168: ['', '/home/sylvia.biscoveanu/populations/correlations/outdir_injections/roq_O3_mn_mass_correlated_22_result.json']
+
+
+analysis_type: 'uncor'
+
+n_draw_pe: 4000
+n_draw_inj: 4000
+n_draw_pred: 4000
